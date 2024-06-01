@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import SearchResult from './components/SearchResult/SearchResult';
-
+import { foodData } from './components/database';
 export const BASE_URL = "http://localhost:9000";
 
 const App = () => {
@@ -16,8 +16,7 @@ const App = () => {
       setLoading(true);
   
       try{
-        const response = await fetch(BASE_URL);
-        const json = await response.json();
+        const json = foodData;
         setData(json);
         setFilteredData(json);
         setLoading(false);
@@ -41,6 +40,7 @@ const App = () => {
     }
 
     const filter = data?.filter((food) => food.type.toLowerCase().includes(type.toLowerCase()));
+    console.log(filter);
     setFilteredData(filter);
     setSelectedBtn(type); 
 
@@ -93,12 +93,15 @@ const App = () => {
         filterBtns.map(value => (
           <Button 
             isSelected={selectedBtn == value.type} 
+            
             key={value.name} 
             onClick={() => filterFood(value.type)}>
               {value.name}
           </Button>
+          
         ))
       }
+        
 
       </FilterContainer>
 

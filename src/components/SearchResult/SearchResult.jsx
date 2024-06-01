@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { BASE_URL, Button } from '../../App'
+
 const SearchResult = ({data}) => {
   return (
     <div>
@@ -9,7 +10,7 @@ const SearchResult = ({data}) => {
           {data?.map(({name,image,text,price}) => (
             <FoodCard key={name}>
               <div className="food_image">
-              <img src={BASE_URL + image}   />
+              <img src={image} />
               </div>
               <div className="food_info">
                 <div className="info">
@@ -80,7 +81,7 @@ const FoodCard = styled.section`
 
 
   display: flex;
-  padding: 8px;
+  padding: 10px;
 
   .food_info{
     display: flex;
